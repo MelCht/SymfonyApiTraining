@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Telephone</th>
+            <th scope="col">Âge</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in pagination %}
+            <tr>
+                <td><a href="{{ path('app_user_show', {'id': user.id}) }}">{{ user.nom }}</a></td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.adresse }}</td>
+                <td>{{ user.tel }}</td>
+                <td>{{ userService.calculateAge(user.birthDate) }} ans</td>
+                <td>
+                    <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center mt-4">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <a href="{{ path('app_new_user') }}" class="btn btn-primary">Ajouter un utilisateur</a>
+{% endblock %}

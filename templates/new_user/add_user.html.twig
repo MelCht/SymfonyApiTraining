@@ -1,0 +1,44 @@
+{# templates/user/add_user.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-3">Ajouter un nouvel utilisateur</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                <div class="mb-2">
+                    {{ form_label(form.nom, 'Nom') }}
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-2">
+                {{ form_label(form.prenom, 'Prénom ') }}
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-2">
+                    {{ form_label(form.adresse, 'Adresse Postale ') }}
+                    {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-2">
+                    {{ form_label(form.tel, 'Numéro de téléphone ') }}
+                    {{ form_widget(form.tel, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-2">
+                    {{ form_label(form.email, 'Adresse e-mail') }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-2">
+                    {{ form_label(form.birthDate, 'Date de naissance') }}
+                    {{ form_widget(form.birthDate, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <a href="{{ path('app_user') }}" class="btn btn-danger ms-2">Retour</a>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
