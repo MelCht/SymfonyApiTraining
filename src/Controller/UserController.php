@@ -62,7 +62,7 @@ class UserController extends AbstractController
         return new JsonResponse(['message' => 'Utilisateur non trouvé'], 404);
     }
 
-    #[Route('/api/add/user', name: 'app_add_user', methods: ['POST'])]
+    #[Route('/api/new/user', name: 'app_add_user', methods: ['POST'])]
     public function addUser(Request $request, UserRepository $userRepository): JsonResponse
     {
         $requestData = json_decode($request->getContent(), true);
@@ -73,8 +73,10 @@ class UserController extends AbstractController
         $user->setEmail($requestData['email']);
         $user->setAdresse($requestData['adresse']);
         $user->setTel($requestData['tel']);
+        $birthDate = new \DateTime($requestData['birthDate']);
+        $user->setBirthDate($birthDate);
 
-        $userRepository->save;
+        $userRepository->save($user);
 
         return new JsonResponse(['message' => 'Utilisateur ajouté avec succès'], 201);
     }
